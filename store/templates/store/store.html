@@ -1,6 +1,6 @@
 {% extends 'home/base.html' %}
 {% block content %}
-
+{% load static %}
 <section class="section-pagetop bg">
 <div class="container">
 	<h2 class="title-page">Our Store</h2>
@@ -125,13 +125,13 @@
 </header><!-- sect-heading -->
 
 <div class="row">
-	{% if products %}
+{% if products %}
 	{% for product in products %}
 	<div class="col-md-4">
 		<figure class="card card-product-grid">
 			<div class="img-wrap">
 
-				<a href="{% url 'home:product_detail' product.pk %}"><img src="{{product.product_image.url}}"></a>
+				<a href="{% url 'home:product_detail' product.pk %}"><img src="{% get_media_prefix %}{{product.product_image}}"></a>
 
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">
@@ -142,12 +142,12 @@
 						<del class="price-old">{{product.product_price}}</del>
 					</div> <!-- price-wrap.// -->
 				</div>
-				<a href="{% url 'add_cart' product.id %}" class="btn btn-block btn-success">Add to cart </a>
+				<a href="{% url 'cart:add_cart' product.pk %}" class="btn btn-block btn-success">Add to cart </a>
 			</figcaption>
 		</figure>
 	</div> <!-- col.// -->
 	{% endfor %}
-	{% endif %}
+{% endif %}
 
 </div> <!-- row end.// -->
 

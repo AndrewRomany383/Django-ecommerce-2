@@ -14,8 +14,8 @@ def _cart_id(request):
     return cart
 
 @login_required
-def add_cart(request, product_id):
-    product = Product.objects.get(id=product_id)
+def add_cart(request, pk):
+    product = Product.objects.get(pk=pk)
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:

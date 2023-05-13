@@ -7,7 +7,7 @@ from django.views.generic import DetailView
 
 
 def home(request):
-    products = Product.objects.all().filter(is_available=True).order_by('-created_date')
+    products = Product.objects.values('pk','product_image','product_name','product_price').filter(is_available=True).order_by('-created_date')
     context = {
         'products': products
     }
@@ -17,6 +17,7 @@ def home(request):
 
 class ProductDetailView(DetailView):
     model = Product
+
 
 
 

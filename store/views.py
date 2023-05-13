@@ -13,7 +13,7 @@ def store(request, slug=None):
         products = Product.objects.filter(category=categories, is_available=True)
         product_count = products.count()
     else:
-        products = Product.objects.all().order_by('-created_date')
+        products = Product.objects.values('pk','product_image','product_name','product_price').order_by('-created_date')
         product_count = products.count()
     context = {
         'products':products,
